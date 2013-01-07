@@ -1,0 +1,15 @@
+﻿
+
+@if (Request.IsAuthenticated)
+{
+
+    
+    <ul class="nav btn-group">
+                <li class="btn btn-inverse" ><a title="" href="@Url.Action("Index","Manager")"><i class="icon icon-user"></i> <span class="text">@User.Identity.Name</span></a></li>
+
+                <li class="btn btn-inverse"><a title="" href="@Url.Action("LogOff","Account")"><i class="icon icon-share-alt"></i> <span class="text">Se déconnecter</span></a></li>
+            </ul>
+}
+
+
+

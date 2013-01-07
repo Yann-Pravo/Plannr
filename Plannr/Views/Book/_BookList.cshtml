@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Plannr.Models.DemandeReservation>
+
+
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="span12">
+        <div class="widget-box">
+            <div class="widget-title">
+								<span class="icon">
+									<i class="icon-th"></i>
+								</span>
+                            <h5>Mes demandes de réservations</h5>
+                        </div>
+            <div class="widget-content nopadding">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Date demande  </th>
+                    <th>Enseignement  </th>
+                    <th>Date souhaitée  </th>
+                    <th>Créneau </th>
+
+                    <th>Capacité  </th>
+                    <th>Projecteur</th>
+                    <th>Statut  </th>
+                    <th></th>
+
+                </tr>
+            </thead>
+
+            <tbody id="listing">
+            </tbody>
+
+        </table>
+        </div>
+        @Scripts.Render("~/Scripts/Plannr/app/listingDemandes.js")
+        <script type="text/javascript">
+            demandesCollection.reset(@Html.Raw(@ViewBag.JSONModel))
+        </script>
+
+    </div>
+    </div>
+        </div>
+</div>

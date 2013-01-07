@@ -1,0 +1,8 @@
+﻿@foreach (var item in ViewBag.unseen)
+{
+    <li>
+        <a href="#"><i class="icon-user"></i> Votre demande de réservation pour
+                    l'enseignement <b class="bluetheme">@item.ReservationAssociee.Enseignement_Libelle</b> a été assignée!</a>
+    </li>
+    
+}

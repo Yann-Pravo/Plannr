@@ -1,0 +1,131 @@
+﻿@model IEnumerable<Plannr.Models.Salle>
+
+@{
+    ViewBag.Title = "IndexSalle";
+}
+
+<div id="choixContainer">
+<div id ="content-header">
+<h1>Gestion des salles</h1>
+</div>
+<div id="breadcrumb">
+				<a href="#" class="tip-bottom" data-original-title="Go to Home"><i class="icon-home"></i> Home</a>
+				<a href="#" class="tip-bottom"> Administration</a>
+                <a href="#" class="current">Gestion Salles</a>
+			</div>
+
+
+
+<div class="container-fluid">
+    <div class="alert">
+    <button class="close" data-dismiss="alert">×</button>
+    Il y a actuellement @ViewBag.count salle(s) recensée(s) dans la base de données.
+</div>
+    <div class="row-fluid">
+        <div class="span12">
+        <div class="widget-box">
+            <div class="widget-title">
+								<span class="icon">
+									<i class="icon-th"></i>
+								</span>
+                            <h5>Liste des salles</h5>
+                        </div>
+            <div class="widget-content nopadding">
+  <table class="table table-bordered">
+    <tr >
+        <th>
+            @Html.DisplayNameFor(model => model.Libelle)
+         </th>
+        <th>@Html.DisplayNameFor(model => model.Batiment.Nom)</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr >
+        <td>
+            @Html.DisplayFor(modelItem => item.Libelle)
+            </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Batiment.Nom)
+            </td>
+        <td ><center>
+            <a href="@Url.Action("DetailsSalle", "Administration", new { id=item.Id })"  class ="btn btn-success"><i class="icon-eye-open"></i>Détails</a>      
+            </center>
+        </td>
+        <td>
+            <center>
+            <a href="@Url.Action("EditSalle", "Administration", new { id=item.Id })"   class="btn btn-primary"><i class="icon-pencil icon-white"></i>Editer</a>
+            </center>
+        </td>
+        <td>
+            <center>
+            <a href="@Url.Action("DeleteSalle", "Administration", new { id=item.Id })" class="btn btn-danger"><i class="icon-remove icon-white"></i></a>
+            </center>
+    </td>
+    </tr>
+}
+
+</table>
+        </div>
+        
+
+        
+
+    </div>
+    </div>
+        </div>
+</div>
+<center>
+<a href="@Url.Action("CreateSalle", "Administration")" class="btn btn-large btn-primary" id="addSalle"><i class="icon-pencil icon-white"></i>Créer une nouvelle salle</a>
+</center>
+    </div>
+
+<div id="editContainer" style="display: none;">
+</div>
+
+<script type="text/javascript">
+
+    var editLoaded = false;
+
+    function showEdit() {
+        $('#choixContainer').fadeOut("fast", function () {
+            $('#editContainer').fadeIn()
+            
+        })
+
+    }
+
+    function showIndex() {
+        $('#editContainer').fadeOut("fast", function () {
+            $('#choixContainer').fadeIn()
+            editLoaded = false;
+        })
+
+    }
+
+    $('#cancelEdit').live('click', function (e) {
+
+        showIndex()
+
+        e.preventDefault()
+        return false
+    })
+
+    $('#addSalle').live('click', function (e) {
+        if (!editLoaded) {
+            $.get("@Url.Action("CreateSalle","Administration")", function (data) {
+
+                $('#editContainer').html(data)
+                showEdit()
+                editLoaded = true
+            })
+
+        } else {
+            showEdit()
+        }
+         e.preventDefault()
+         e.stopPropagation()
+         return false
+    })
+
+     </script>

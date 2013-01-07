@@ -1,0 +1,38 @@
+﻿@model Plannr.Models.Matiere
+
+@{
+    ViewBag.Title = "DeleteMatiere";
+}
+
+<<<<<<< HEAD
+=======
+
+>>>>>>> t4
+<h2>Delete</h2>
+
+<h3>Etes vous sûr de vouloir supprimer cette matière?</h3>
+<fieldset>
+    <legend>Matiere</legend>
+
+   <table class="table table-striped table-condensed">
+  <thead>
+              <tr style="background-color:#00A7C8; color:white">
+                <th>@Html.DisplayNameFor(model => model.Libelle)</th>
+               
+                
+              </tr>
+       <tr>
+                <th>@Html.DisplayFor(model => model.Libelle)</th>
+                              
+              </tr>
+            </thead>
+
+</table>
+</fieldset>
+@using (Html.BeginForm()) {
+  
+    <p>
+        <input type="submit" value="Delete" class="btn btn-large btn-danger"/> |
+        @Html.ActionLink("Back to List", "IndexMatiere")
+    </p>
+}

@@ -1,0 +1,67 @@
+﻿@model Plannr.Models.Enseignement
+
+
+@{
+    ViewBag.Title = "Create";
+}
+<div id ="content-header">
+<h1>Création</h1>
+</div>
+<div id="breadcrumb">
+				<a href="#" class="tip-bottom" data-original-title="Go to Home"><i class="icon-home"></i> Home</a>
+				<a href="#" class="tip-bottom"> Administration</a>
+                <a href="#" class="current">Gestion Enseignements</a>
+                <a href="#" class="current">Creation Enseignement</a>
+			</div>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <center>
+
+    <fieldset>
+        <legend> </legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Libelle)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Libelle)
+            @Html.ValidationMessageFor(model => model.Libelle)
+        </div>
+        <div class="control-group">
+        <label class="control-label" for="">Cours</label>
+         <div class="editor-field">
+            @Html.DropDownListFor(model => model.Cours.Id, new SelectList(ViewBag.ListeCours, "Id", "Libelle"), "Sélectionnez un cours")  
+           
+        </div>
+        </div>
+        <div class="control-group">
+        <label class="control-label" for="">Enseignant</label>
+         <div class="editor-field">
+            @Html.DropDownListFor(model => model.Enseignant.UserId, new SelectList(ViewBag.ListeEnseignants, "UserId", "UserName"), "Sélectionnez un enseignant")  
+           
+        </div>
+        </div>
+        <div class="control-group">
+        <label class="control-label" for="">Groupe</label>
+         <div class="editor-field">
+            @Html.DropDownListFor(model => model.Groupe.Id, new SelectList(ViewBag.ListeGroupes, "Id", "Libelle"), "Sélectionnez un groupe")  
+           
+        </div>
+        </div>
+
+        <p><br /></p>
+
+        <p>
+            <input class="btn btn-large btn-primary" type="submit" value="Create"  />
+            <a href="@Url.Action("Index", "Enseignement")" class="btn btn-large" id="cancelEdit">Annuler</a>
+        </p>
+    </fieldset>
+    </center>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

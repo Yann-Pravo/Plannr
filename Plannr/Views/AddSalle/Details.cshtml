@@ -1,0 +1,25 @@
+﻿@model Plannr.Models.Salle
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Salle</legend>
+   
+
+    @Html.DisplayNameFor(model => model.Batiment.Nom)
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Libelle)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Libelle)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

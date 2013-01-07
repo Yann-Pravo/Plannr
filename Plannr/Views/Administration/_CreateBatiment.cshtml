@@ -1,0 +1,42 @@
+﻿@model Plannr.Models.Batiment
+
+@{
+    ViewBag.Title = "_CreateBatiment";
+}
+
+<div id ="content-header">
+<h1>Creation</h1>
+</div>
+<div id="breadcrumb">
+				<a href="#" class="tip-bottom" data-original-title="Go to Home"><i class="icon-home"></i> Home</a>
+				<a href="#" class="tip-bottom"> Administration</a>
+                <a href="#" class="current">Gestion Batiments</a>
+                <a href="#" class="current">Creation Batiment</a>
+			</div>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <center>
+    <fieldset style="margin-left:30px">
+        <legend> </legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nom)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nom)
+            @Html.ValidationMessageFor(model => model.Nom)
+        </div>
+
+        <p>
+            <input class="btn btn-large btn-primary" type="submit" value="Create"  />
+             <a href="@Url.Action("IndexBatiment", "Administration")" class="btn btn-large" id="cancelEdit">Annuler</a>
+        </p>
+    </fieldset>
+        </center>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

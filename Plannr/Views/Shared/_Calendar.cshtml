@@ -1,0 +1,92 @@
+﻿<div id="@Html.Raw(ViewBag.calendarId)">
+
+</div>
+
+<script type="text/javascript">
+
+    var calSel = $("#@Html.Raw(ViewBag.calendarId)");
+
+    $('#precWeek').bind('click',function() {
+
+        calSel.weekCalendar("prevWeek");
+
+    });
+
+    $("#nextWeek").bind('click',function() {
+        calSel.weekCalendar("nextWeek");
+    });
+
+    
+    var eventsNET = @Html.Raw(@ViewBag.calendarJSON);
+
+    var mapped = _.map(eventsNET,function(item) {
+
+        item.start = new Date(item.start*1000);
+        item.end = new Date(item.end*1000);
+        return item;
+
+    });
+
+  
+
+    var year = new Date().getFullYear();
+    var month = new Date().getMonth();
+    var day = new Date().getDate();
+
+    var eventData = {
+        events: mapped
+    };
+
+
+    calSel.weekCalendar({
+        timeslotsPerHour: 1,
+        timeslotHeight: 40,
+            
+        hourLine: true,
+        data: eventData,
+        limitDisplay: true,
+        use24Hour:true,
+        height: function ($calendar) {
+            return 600;
+        },
+        allowEventCreation:false,
+        firstDayOfWeek:1,
+        businessHours: {
+            start: 8,
+            end: 20,
+            limitDisplay: true
+        },
+        allowCalEventOverlap: false,
+        buttons: true,
+        daysToShow:5,
+        eventNew: function (calEvent, $event) {
+            displayMessage('<strong>Added event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
+            alert('You\'ve added a new event. You would capture this event, add the logic for creating a new event with your own fields, data and whatever backend persistence you require.');
+        },
+        eventDrop: function (calEvent, $event) {
+            displayMessage('<strong>Moved Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
+        },
+        eventResize: function (calEvent, $event) {
+            displayMessage('<strong>Resized Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
+        },
+        eventClick: function (calEvent, $event) {
+            displayMessage('<strong>Clicked Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
+        },
+        eventMouseover: function (calEvent, $event) {
+            displayMessage('<strong>Mouseover Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
+        },
+        eventMouseout: function (calEvent, $event) {
+            displayMessage('<strong>Mouseout Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
+        },
+        noEvents: function () {
+            displayMessage('There are no events for this week');
+        }
+    });
+
+    function displayMessage(message) {
+        //$('#message').html(message).fadeIn();
+    }
+
+    //$('<div id="message" class="ui-corner-all"></div>').prependTo($('body'));
+    
+</script>

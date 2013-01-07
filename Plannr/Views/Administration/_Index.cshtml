@@ -1,0 +1,124 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@ViewBag.monJson
+<div class="row" id="choixContainer" style="text-align:center; margin-top:20px;"> 
+
+
+        <a href="@Url.Action("IndexEnseignant","Administration")" class="btn btn-large btn-primary" id="EnseignemantDemand"><i class="icon-pencil icon-white"></i> Gestion des enseignants</a>
+        <a href="@Url.Action("IndexSalle","Administration")" class="btn btn-large btn-primary" id="SalleDemand"><i class="icon-pencil icon-white"></i> Gestion des salles</a>
+        <a href="@Url.Action("IndexBatiment","Administration")" class="btn btn-large btn-primary" id="BatimentDemand"><i class="icon-pencil icon-white"></i> Gestion des batiments</a>
+        <a href="@Url.Action("IndexMatiere","Administration")" class="btn btn-large btn-primary" id="MatiereDemand"><i class="icon-pencil icon-white"></i> Gestion des matières</a>
+</div>
+
+<div class="row" id="editContainer" style="display:none;">
+
+
+</div>
+
+<script type="text/javascript">
+
+    var editLoaded = false;
+
+    function showEdit() {
+        $('#choixContainer').fadeOut("fast", function () {
+            $('#editContainer').fadeIn()
+            editLoaded = false;
+        })
+
+    }
+
+    function showIndex() {
+        $('#editContainer').fadeOut("fast", function () {
+            $('#choixContainer').fadeIn()
+
+           
+
+            editLoaded = false;
+
+        })
+
+    }
+
+    $('#cancelEdit').live('click', function (e) {
+
+        showIndex()
+
+        e.preventDefault()
+        return false
+    })
+
+    $('#EnseignemantDemand').live('click', function (e) {
+        if (!editLoaded) {
+            $.get("@Url.Action("IndexEnseignant","Administration")", function (data) {
+
+                $('#editContainer').html(data)
+                showEdit()
+                editLoaded = true
+            })
+
+        } else {
+            showEdit()
+        }
+         e.preventDefault()
+         e.stopPropagation()
+         return false
+     })
+
+    $('#SalleDemand').live('click', function (e) {
+        if (!editLoaded) {
+            $.get("@Url.Action("IndexSalle","Administration")", function (data) {
+
+                    $('#editContainer').html(data)
+                    showEdit()
+                    editLoaded = true
+                })
+
+            } else {
+                showEdit()
+            }
+              e.preventDefault()
+              e.stopPropagation()
+              return false
+          })
+
+        $('#BatimentDemand').live('click', function (e) {
+            if (!editLoaded) {
+                $.get("@Url.Action("IndexBatiment","Administration")", function (data) {
+
+                    $('#editContainer').html(data)
+                    showEdit()
+                    editLoaded = true
+                })
+
+            } else {
+                showEdit()
+            }
+            e.preventDefault()
+            e.stopPropagation()
+            return false
+        })
+
+        $('#MatiereDemand').live('click', function (e) {
+            if (!editLoaded) {
+                $.get("@Url.Action("IndexMatiere","Administration")", function (data) {
+
+                    $('#editContainer').html(data)
+                    showEdit()
+                    editLoaded = true
+                })
+
+            } else {
+                showEdit()
+            }
+            e.preventDefault()
+            e.stopPropagation()
+            return false
+        })
+
+
+
+
+</script>
+

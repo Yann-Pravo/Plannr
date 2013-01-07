@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Plannr.Models.Enseignant>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Ajout d'un Enseignant</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-striped table-condensed">
+    <tr >
+        <th style="background-color:#00A7C8; color:white">
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr >
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td >
+
+            @Html.ActionLink("Edit", "Edit", new { id=item.UserId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.UserId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UserId })
+        </td>
+    </tr>
+}
+
+</table>

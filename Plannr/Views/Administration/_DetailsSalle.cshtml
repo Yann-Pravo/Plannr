@@ -1,0 +1,79 @@
+﻿@model Plannr.Models.Salle
+
+@{
+    ViewBag.Title = "_DetailsSalle";
+}
+
+<div id ="content-header">
+<h1>Details</h1>
+</div>
+<div id="breadcrumb">
+				<a href="#" class="tip-bottom" data-original-title="Go to Home"><i class="icon-home"></i> Home</a>
+				<a href="#" class="tip-bottom"> Administration</a>
+                <a href="#" class="current">Gestion Salles</a>
+                <a href="#" class="current">Details Salle</a>
+			</div>
+
+<div class="container-fluid">
+<div class="row-fluid">
+        <div class="span12">
+        <div class="widget-box">
+            <div class="widget-content nopadding">
+                
+  <table class="table table-bordered">
+    <tr >
+        <th>
+            @Html.DisplayNameFor(model => model.Libelle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Capacite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Batiment.Nom)
+        </th>
+        <th>
+           Vid&eacute;oprojecteur
+            
+        </th>
+        <th>
+          Prises &eacute;l&eacute;ctriques 
+           
+        </th>
+         
+  
+    </tr>
+
+    <tr >
+        <th>
+         @Html.DisplayFor(model => model.Libelle)
+
+        </th>
+        <th>
+         @Html.DisplayFor(model => model.Capacite)
+
+        </th>
+         <th>
+         @Html.DisplayFor(model => model.Batiment.Nom)
+
+        </th>
+        <th>
+            @Html.DisplayFor(model => model.AProjecteur)
+        </th>
+        <th>
+            @Html.DisplayFor(model => model.APrises)
+        </th>
+    </tr>
+</table>
+        </div>
+    </div>
+    </div>
+        </div>
+    </div>
+
+
+<center>
+<p >
+     <a href="@Url.Action("EditSalle", "Administration", new { id=Model.Id })" class="btn btn-large btn-primary" >Edit</a> 
+    <a href="@Url.Action("IndexSalle", "Administration")" class="btn btn-large" id="cancelEdit">Annuler</a>
+</p>
+    </center>

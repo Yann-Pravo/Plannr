@@ -1,0 +1,29 @@
+﻿@model Plannr.Models.DemandeReservation
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>DemandeReservation</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DateDemande)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateDemande)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Checked)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Checked)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

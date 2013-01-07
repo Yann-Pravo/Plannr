@@ -1,0 +1,52 @@
+﻿@model Plannr.Models.Enseignant
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Enseignant</legend>
+
+        @Html.HiddenFor(model => model.UserId)
+        <table class="table table-striped table-condensed">
+  <thead>
+              <tr style="background-color:#00A7C8; color:white">
+                <th>@Html.DisplayNameFor(model => model.UserName)</th>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+                <th>@Html.DisplayNameFor(model => model.Tel)</th>
+                
+              </tr>
+       <tr>
+                <th>@Html.EditorFor(model => model.UserName)
+            @Html.ValidationMessageFor(model => model.UserName)</th>
+                <th>@Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)</th>
+                <th>@Html.EditorFor(model => model.FirstName)
+            @Html.ValidationMessageFor(model => model.FirstName)</th>
+                <th>@Html.EditorFor(model => model.Tel)
+            @Html.ValidationMessageFor(model => model.Tel)</th>
+                
+              </tr>
+            </thead>
+
+</table>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

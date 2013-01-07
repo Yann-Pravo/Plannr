@@ -1,0 +1,43 @@
+﻿@model Plannr.Models.Reservation
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Reservation</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Date)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Creneau_Libelle)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Creneau_Libelle)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Enseignement_Libelle)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Enseignement_Libelle)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Salle_Libelle)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Salle_Libelle)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

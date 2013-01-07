@@ -1,0 +1,68 @@
+﻿@model Plannr.Models.Enseignant
+@{
+    ViewBag.Title = "EditData";
+}
+<div id="content-header">
+    <h1>Gestion de mon compte</h1>
+</div>
+<div id="breadcrumb">
+    <a href="#" class="tip-bottom" data-original-title="Go to Home"><i class="icon-home"></i>Home</a>
+    <a href="#" class="tip-bottom">Mon compte</a>
+</div>
+<div class="alert">
+    <button class="close" data-dismiss="alert">×</button>
+    Vous pouvez ici mettre à jour vos données personnelles.
+</div>
+<div class="container-fluid">
+    <p class="message-success">@ViewBag.StatusMessage</p>
+ <div class="row-fluid">
+        
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon">
+                        <i class="icon-align-justify"></i>
+                    </span>
+                    <h5>Mes informations personnelles</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    @using (Html.BeginForm("EditData", "Account", FormMethod.Post, new { @class = "form-horizontal", @id = "EditPersoData" }))
+                    {
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.UserId)
+                        <div class="control-group">
+                            <label class="control-label">Nom</label>
+                            <div class="controls">
+                                @Html.EditorFor(model => model.Name)
+                                @Html.ValidationMessageFor(model => model.Name)
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Prénom</label>
+                            <div class="controls">
+                                @Html.EditorFor(model => model.FirstName)
+                                @Html.ValidationMessageFor(model => model.FirstName)
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Téléphone</label>
+                            <div class="controls">
+                                @Html.EditorFor(model => model.Tel)
+                                @Html.ValidationMessageFor(model => model.Tel)
+                            </div>
+                        </div>
+                               
+                        <div class="form-actions">
+                            <input type="submit" value="Valider" class="btn btn-primary">
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

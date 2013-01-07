@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <title>Plannr</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Styles.Render("~/Content/themes/bootstrap")
+    @Styles.Render("~/Content/themes/fullcalendar")
+    <!--@Styles.Render("~/Content/themes/base/css")-->
+
+</head>
+<body>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+
+    <div id="header">
+        <h1><a href="./dashboard.html">Unicorn Admin</a></h1>
+    </div>
+
+    <div id="user-nav" class="navbar navbar-inverse">
+        @Html.Partial("_LoginPartial")
+    </div>
+
+    <div id="sidebar">
+        <a href="@Url.Action("Index", "Manager")" class="visible-phone"><i class="icon icon-align-justify"></i><span>MENU</span></a>
+
+        <ul>
+            <li @if ((@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Home") || (@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Manager"))
+                { <text>class="active"</text> }><a href="@Url.Action("Index", "Manager")"><i class="icon icon-home"></i><span>Dashboard</span></a></li>
+
+            <li @if (@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Book")
+                { <text>class="active"</text> }><a href="@Url.Action("Index", "Book")"><i class="icon icon-file"></i><span>Demandes de réservations</span></a></li>
+
+
+                <li @if (@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Reservations")
+                { <text>class="active"</text> }><a href="@Url.Action("Index", "Reservations")"><i class="icon icon-ok"></i><span>Valider réservations</span></a></li>
+
+             <li @if (@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Cours")
+                { <text>class="active"</text> }><a href="@Url.Action("Index", "Cours")"><i class="icon icon-plus"></i><span>Ajouter un cours</span></a></li>
+           
+             <li @if (@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Enseignement")
+                { <text>class="active"</text> }><a href="@Url.Action("Index", "Enseignement")"><i class="icon icon-plus"></i><span>Ajouter un enseignement</span></a></li>
+            
+            
+             <!--<li><a href="@Url.Action("Index", "Administration")"><i class="icon icon-pencil"></i><span>Administration</span></a></li>-->
+
+            <li class="submenu">
+					<a href="#"><i class="icon icon-th-list"></i> <span>Administration</span> <span class="label">6</span></a>
+					<ul style="display: none;">
+						<li> <a href="@Url.Action("IndexEnseignant","Administration")">Gestion Enseignant</a></li>
+						<li><a href="@Url.Action("IndexMatiere", "Administration")">Gestion Matière</a></li>
+                        <li> <a href="@Url.Action("IndexBatiment","Administration")">Gestion Batiment</a></li>
+						<li><a href="@Url.Action("IndexSalle", "Administration")">Gestion Salle</a></li>
+                        <li><a href="@Url.Action("IndexUE", "Administration")">Gestion UE</a></li>
+                        <li><a href="@Url.Action("IndexResponsable", "Administration")">Gestion Responsable</a></li>
+
+					</ul>
+				</li>
+                
+                 <li class="submenu">
+					<a href="#"><i class="icon icon-wrench"></i> <span>Mon compte</span> <span class="label">2</span></a>
+					<ul style="display: none;">
+						<li> <a href="@Url.Action("Manage","Account")">Mon mot de passe</a></li>
+						<li><a href="@Url.Action("EditData", "Account")">Mes infos personnelles</a></li>
+                  
+
+					</ul>
+				</li>
+
+        
+        </ul>
+
+    </div>
+
+
+    <div id="content">
+        <div id="overlay"></div>
+        <div id="spinner"></div>
+
+        @RenderBody()
+
+        
+
+    </div>
+
+
+
+    @Scripts.Render("~/bundles/plannrSinglePage")
+    @Scripts.Render("~/bundles/unicorn")
+
+    <script type="text/javascript">
+        $(function() {
+
+            $('#content').css('min-height',$(window).height()+'px')
+
+        })
+
+    </script>
+
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

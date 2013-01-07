@@ -1,0 +1,65 @@
+﻿@model Plannr.Models.Ue
+
+@{
+    ViewBag.Title = "_EditUE";
+}
+
+<div id ="content-header">
+<h1>Editer</h1>
+</div>
+<div id="breadcrumb">
+				<a href="#" class="tip-bottom" data-original-title="Go to Home"><i class="icon-home"></i> Home</a>
+				<a href="#" class="tip-bottom"> Administration</a>
+                <a href="#" class="current">Gestion UEs</a>
+                <a href="#" class="current">Edition UE</a>
+			</div>
+
+@using (Html.BeginForm()) { 
+    @Html.ValidationSummary(true)
+    <div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+        <div class="widget-box">
+            <div class="widget-content nopadding">
+  <table class="table table-bordered">
+    <tr >
+        <th>
+            @Html.LabelFor(model => model.Libelle)
+        </th>
+  <th>
+            @Html.LabelFor(model => model.Description)
+        </th>
+  
+    </tr>
+
+    <tr >
+        <th>
+        @Html.EditorFor(model => model.Libelle)
+            @Html.ValidationMessageFor(model => model.Libelle)
+
+        </th>
+        <th>
+        @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+
+        </th>
+    </tr>
+</table>
+        </div>
+    </div>
+    </div>
+        </div>
+  
+      </div>
+    
+    <center>
+         <p style="margin-left:20px">
+             <input type="submit" value="Save" class="btn btn-large btn-primary"/>
+            <a href="@Url.Action("IndexUE", "Administration")" class="btn btn-large" id="cancelEdit">Annuler</a>
+        </p>
+        </center>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

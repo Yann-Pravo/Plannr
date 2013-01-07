@@ -1,0 +1,87 @@
+﻿@model Plannr.Models.DemandeReservation
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon">
+                    <i class="icon-th"></i>
+                </span>
+                <h5>Faire une demande de réservation</h5>
+            </div>
+            <div class="widget-content nopadding">
+
+                @using (Html.BeginForm("Create", "Book", FormMethod.Post, new { @class = "form-horizontal", @id = "CreateDemandesForm" }))
+                {
+        
+                    @Html.ValidationSummary(true)
+
+  
+
+                    <div class="control-group">
+                        <label class="control-label" for="">@Html.LabelFor(model => model.Enseignement)</label>
+                        <div class="controls">
+                            @Html.DropDownListFor(model => model.Enseignement.Id, new SelectList(ViewBag.listEnseignements, "Id", "Libelle"))
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">@Html.LabelFor(model => model.BesoinProjecteur)</label>
+
+
+                        <div class="controls">
+                            @Html.EditorFor(model => model.BesoinProjecteur)
+                            @Html.ValidationMessageFor(model => model.BesoinProjecteur)
+                        </div>
+                    </div>
+        
+
+                    <div class="control-group">
+                        <label class="control-label">@Html.LabelFor(model => model.CapaciteNecessaire)</label>
+
+                        <div class="controls">
+                            @Html.EditorFor(model => model.CapaciteNecessaire)
+                            @Html.ValidationMessageFor(model => model.CapaciteNecessaire)
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">@Html.LabelFor(model => model.DateVoulue)</label>
+
+                        <div class="controls">
+                            @Html.EditorFor(model => model.DateVoulue)
+                            @Html.ValidationMessageFor(model => model.DateVoulue)
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="">@Html.LabelFor(model => model.CreneauSouhaite)</label>
+                        <div class="controls">
+                            @Html.DropDownListFor(model => model.CreneauSouhaite.Id, new SelectList(ViewBag.listCreneauxHoraires, "Id", "HeureConcat"))
+                        </div>
+                    </div>
+
+
+                    <div class="form-actions">
+                        <input type="submit" value="Créer" class="btn btn-primary" />
+                        <a href="@Url.Action("Index", "Book")" class="btn btn-danger" id="cancelEdit">Annuler</a>
+                    </div>
+     
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript">
+    $("#DateVoulue").datepicker({
+        dateFormat: "yy/mm/dd",
+        firstDay:1
+    })
+</script>
+
+

@@ -1,0 +1,139 @@
+﻿@model IEnumerable<Plannr.Models.Enseignant>
+
+@{
+    ViewBag.Title = "IndexEnseignant";
+}
+
+<div id="choixContainer">
+<div id ="content-header">
+<h1>Gestion des enseignants</h1>
+</div>
+<div id="breadcrumb">
+				<a href="#" class="tip-bottom" data-original-title="Go to Home"><i class="icon-home"></i> Home</a>
+				<a href="#" class="tip-bottom"> Administration</a>
+                <a href="#" class="current">Gestion Enseignant</a>
+			</div>
+
+
+
+<div class="container-fluid">
+    <div class="alert">
+    <button class="close" data-dismiss="alert">×</button>
+    Il y a actuellement @ViewBag.count enseignant(s) recensé(s) dans la base de données.
+</div>
+    <div class="row-fluid">
+        <div class="span12">
+        <div class="widget-box">
+            <div class="widget-title">
+								<span class="icon">
+									<i class="icon-th"></i>
+								</span>
+                            <h5>Liste des enseignants</h5>
+                        </div>
+            <div class="widget-content nopadding">
+  <table class="table table-bordered">
+    <tr >
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    
+    <tr >
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td ><center>
+            <a href="@Url.Action("DetailsEnseignant", "Administration", new { id=item.UserId })"  class ="btn btn-success" id="detailsEns"><i class="icon-eye-open"></i>Détails</a>      
+          
+             </center>
+        </td>
+        <td>
+            <center>
+            <a href="@Url.Action("EditEnseignant", "Administration", new { id=item.UserId })" class="btn btn-primary" id="editEns"><i class="icon-pencil icon-white"></i>Editer</a>
+            
+
+            </center>
+        </td>
+        <td>
+            <center>
+            <a href="@Url.Action("DeleteEnseignant", "Administration", new { id=item.UserId })" class="btn btn-danger" ><i class="icon-remove icon-white"></i></a>
+            </center>
+    </td>
+    </tr>
+   
+}
+
+</table>
+        </div>
+        
+
+        
+
+    </div>
+    </div>
+        </div>
+</div>
+<center>
+     
+<a href="@Url.Action("CreateEnseignant", "Administration")" class="btn btn-large btn-primary" id="addEnseignant"><i class="icon-pencil icon-white"></i>Créer un nouvel enseignant</a>
+</center>
+    </div>
+
+<div id="editContainer" style="display: none;">
+</div>
+
+<script type="text/javascript">
+
+    var editLoaded = false;
+
+    function showEdit() {
+        $('#choixContainer').fadeOut("fast", function () {
+            $('#editContainer').fadeIn()
+            editLoaded = false;
+        })
+
+    }
+
+    function showIndex() {
+        $('#editContainer').fadeOut("fast", function () {
+            $('#choixContainer').fadeIn()
+            editLoaded = false;
+        })
+
+    }
+
+    $('#cancelEdit').live('click', function (e) {
+
+        showIndex()
+        editLoaded = false;
+
+        e.preventDefault()
+        return false
+    })
+
+    $('#addEnseignant').live('click', function (e) {
+        if (!editLoaded) {
+            $.get("@Url.Action("CreateEnseignant","Administration")", function (data) {
+
+                $('#editContainer').html(data)
+                showEdit()
+                editLoaded = true
+            })
+
+        } else {
+            showEdit()
+        }
+         e.preventDefault()
+         e.stopPropagation()
+         return false
+    })
+
+  
+    
+
+     </script>

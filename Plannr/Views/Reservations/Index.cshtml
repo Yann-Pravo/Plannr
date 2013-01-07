@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Plannr.Models.DemandeReservation>
+
+<div id="content-header">
+    <h1>Demandes de réservations</h1>
+</div>
+<div id="breadcrumb">
+    <a href="#" class="tip-bottom" data-original-title="Go to Home"><i class="icon-home"></i>Home</a>
+    <a href="#">Validation des réservations</a>
+    <a href="#" class="current">Listing</a>
+</div>
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon">
+                        <i class="icon-th"></i>
+                    </span>
+                    <h5>Les demandes de réservation à valider</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Date demande  </th>
+                                <th>Demandeur  </th>
+                                <th>Enseignement  </th>
+                                <th>Date voulue</th>
+                                <th>Validation </th>
+
+                            </tr>
+
+                            <tr>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="listing">
+                            @if (Model.Count() == 0)
+                            {
+                                <b>Aucune réservation à valider pour l'instant</b>
+                            }
+
+                            @foreach (var item in Model)
+                            {
+  
+
+                                <tr>
+
+                                    <td>@item.DateDemande</td>
+                                    <td>@item.Enseignement.Enseignant.Name</td>
+                                    <td>@item.Enseignement.Libelle</td>
+                                    <td>@item.DateVoulue</td>
+                                    <td><a href="@Url.Action("Create", "Reservations",new {id=@item.Id})" class="btn btn-primary">Assigner</a></td>
+
+                                </tr>
+
+
+
+                          
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

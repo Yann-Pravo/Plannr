@@ -1,0 +1,46 @@
+﻿@model Plannr.Models.Reservation
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Reservation</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Date)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Creneau_Libelle)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Creneau_Libelle)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Enseignement_Libelle)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Enseignement_Libelle)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Salle_Libelle)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Salle_Libelle)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
